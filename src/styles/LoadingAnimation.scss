@@ -1,0 +1,69 @@
+@import "utils";
+
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #ccc;
+  margin: 0 10px;
+  animation: dot-animation
+    2s ease-in-out infinite;
+}
+
+
+.dot:first-child {
+animation-delay: 0s;
+}
+
+
+.dot:nth-child(2) {
+animation-delay: 0.5s;
+}
+
+
+.dot:last-child {
+animation-delay: 1s;
+}
+
+
+@keyframes dot-animation {
+0% {
+transform: translateY(0);
+background-color: #ccc;
+}
+50% {
+transform: translateY(-10px);
+background-color: #999;
+}
+100% {
+transform: translateY(0);
+background-color: #ccc;
+}
+}
+
+// Second animation
+.loader {
+  border: 5px solid $white; /* Definimos el tamaño del círculo */
+  border-top: 5px solid $action-color; /* Definimos el color del borde superior */
+  border-radius: 50%; /* Redondeamos los bordes para crear un círculo */
+  width: 50px; /* Definimos el ancho del círculo */
+  height: 50px; /* Definimos la altura del círculo */
+  animation: spin .7s linear infinite; /* Definimos la animación */
+  margin: auto; /* Centramos el círculo en la
+  página */
+  transition: alll 1s ease-in-out;
+  box-shadow: 0px 0px 60px rgba-color($action-color, .7), inset 0px 0px 60px rgba-color($action-color, .3);
+}
+
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg)} 
+}

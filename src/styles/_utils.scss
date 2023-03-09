@@ -1,0 +1,10 @@
+$action-color: #FFC300;
+$second-color: #003566;
+$bg-color: #001D3D;
+$black: #000814;
+$white: #E5E5E5;
+
+
+@function rgba-color($color, $alpha) { 
+  @return rgba(red($color), green($color), blue($color), $alpha); 
+}

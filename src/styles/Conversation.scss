@@ -1,0 +1,162 @@
+@import "utils";
+
+.content--container{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.conversation{
+  &__container{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    gap: 1rem;
+    padding: 1rem; // Modify on desktop
+    border-radius: 1rem;
+    transition: all 0.3s ease-in-out;
+    // background-color: rgba-color($second-color, 0.3);
+    // box-shadow: 0px 5px 10px rgba(0, 0, 0, .2);
+  }
+  &__info{
+    
+    justify-self: center;
+    align-self: center;
+  }
+  &__title{
+    font-family: Josefin Sans;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $white;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+  }
+  &__list{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 1rem;
+    font-size: .75rem;
+    white-space: pre-wrap;
+    max-height: 81vh; // MAX HEIGHT
+    overflow-y: scroll;
+    padding: .5rem;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+    box-shadow: inset 0px 10px 10px $bg-color, inset 0px -10px 10px $bg-color;
+  }
+}
+
+
+
+.conversation__message{
+  &__container{
+    max-width: fit-content;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .2);
+  }
+  &__content{
+    font-size: .97rem;    
+  }
+}
+
+
+.userinput{
+  &__container{
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .5rem;
+    transition: all 0.3s ease-in-out;
+    width: 80%;
+  }
+  &__input{
+    background-color: rgba-color($second-color, 0.9);
+    padding: .5rem;
+    border-radius: 2rem;
+    border: 3px solid rgba-color($action-color, .3);
+    padding-left: 1rem;
+    transition: all 0.1s ease-in-out;
+    font-family: Josefin Sans;
+    font-size: 1rem;
+    &:focus{
+      outline: none;
+      border: 3px solid $action-color;
+    }
+  }
+  &__button{
+    align-self: center;
+    background-color: $action-color;
+    color: $black;
+    font-family: Josefin Sans;
+    font-weight: bold;
+    padding: .5rem;
+    width: 5rem;
+    &:hover{
+      background-color: rgba-color($action-color, 0.7);
+    }
+  }
+}
+
+
+.disabled{
+  background-color: rgba-color($second-color, 0.3);
+  color: rgba-color($action-color, 1);
+  cursor: not-allowed;
+  &:hover{
+    background-color: rgba-color($second-color, 0.3);
+    cursor: not-allowed;
+  }
+}
+
+.assistant{
+  text-align: start;
+  background-color: rgba-color($action-color, 0.25);
+  padding: 1rem;
+
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  z-index: -1;
+  
+}
+
+.user{
+  background-color: rgba-color($second-color, 0.9);
+  padding: 1rem;
+  border-top-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  justify-self: end;
+  z-index: -1;
+}
+
+pre > div {
+  font-family: Roboto Slab;
+  background: $bg-color !important;
+  border: unset !important;
+  box-shadow: none !important;
+  width: fit-content !important;
+}
+
+pre > code{
+  background: $bg-color !important;
+  width: fit-content !important;
+}
+
+code{
+  background: $bg-color !important;
+  width: fit-content !important;
+}
+
+pre {
+  padding: 1rem;
+  background: $bg-color !important;
+  max-width: 100%;
+  overflow-x: auto;
+  width: fit-content !important;
+
+}
+
