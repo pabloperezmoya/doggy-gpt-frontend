@@ -46,13 +46,10 @@ function RenderMarkdown({children}) {
 const fetchConversations = (url) => axios.get(url).then((res) => res.data);
 
 export function Conversation({
-  setToggle, 
   urlApi, 
   apiPath, 
   chat_id, 
-  chat_title,
   newChat,
-  setNewChat
 }){
   apiPath = apiPath + chat_id;
   const [conversations, setConversations] = useState(null);
@@ -64,10 +61,9 @@ export function Conversation({
   const [showInfo, setShowInfo] = useState(false);
   
   useEffect(() => {
-    console.log("Chat_id: ", chat_id)
-    if (!newChat){
+    // if (!newChat){
       setConversations(data)
-    }
+    // }
   }, [data])
 
   useEffect(() => {
@@ -221,10 +217,6 @@ export function Conversation({
             ><SendIcon/></button>
           </>
         )}
-        
-        
-        
-
       </div>
       
 

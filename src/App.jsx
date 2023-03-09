@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useMediaQuery } from 'react-responsive';
 
 import { ChatList } from './components/ChatList';
@@ -8,15 +8,20 @@ import './styles/App.scss';
 
 function App() {
   const user_id = '1234';
+  
   const urlApi = 'http://192.168.2.100:8000/';
+
   const [conversation, setConversation] = useState({active: false});
-  const [toggle, setToggle] = useState(false);
   const [newChat, setNewChat] = useState(false);
 
   if (!user_id){
     return (
       <div className='App'>
-        <h1>Login</h1>
+        <h1>Only a few people can acces here</h1>
+        <h1>I think you arent part of this people
+          <p>&nbsp;</p>
+          <p>Sooo, goodbye🦖👋</p>
+        </h1>
       </div>
     )
   }
@@ -27,7 +32,7 @@ function App() {
   return (
     <div className='App'>
       <div className='header'>
-        <h1 className='header__title'>Floppy GPT</h1>
+        <h1 className='header__title'>Doggy GPT🐶</h1>
         {isMobile && conversation?.active == true && (
           <button className='header__button button' onClick={() => setConversation({active:false})}>Back</button>
         )}
@@ -37,21 +42,20 @@ function App() {
         {isMobile && conversation?.active == false && (
           <ChatList
             urlApi={urlApi}
+            apiPath='chat/'
             user_id={user_id}
-            apiPath='chat/get_chats/'
+            // conversation={conversation}
             setConversation={setConversation}
-            newChat={newChat}
             setNewChat={setNewChat}
           />
         )}
         {!isMobile && (
           <ChatList
             urlApi={urlApi}
+            apiPath='chat/'
             user_id={user_id}
-            apiPath='chat/get_chats/'
-            conversation={conversation}
+            // conversation={conversation}
             setConversation={setConversation}
-            newChat={newChat}
             setNewChat={setNewChat}
           />
         )}
@@ -65,9 +69,7 @@ function App() {
                 urlApi={urlApi}
                 apiPath='chat/get_conversations/'
                 chat_id={conversation?.chat_id}
-                chat_title={conversation?.chat_title}
                 newChat={newChat}
-                setNewChat={setNewChat}
                 />
             </div>
         )}
@@ -76,7 +78,6 @@ function App() {
             <div className="conversation__container">
             <h1>Welcome!</h1>
             <p>Click on "New Chat" start a conversation with OpenAI GPT-3.5 Turbo Model (aka. ChatGPT)</p>
-
             </div>
           </div>
         )}

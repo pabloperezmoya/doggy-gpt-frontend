@@ -9,19 +9,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import '../styles/ChatList.scss'
 import { CircleLoadingAnimation } from './LoadingAnimation';
 
-const fetchChatList = (url) => axios.get(url).then((res) => res.data);
+const fetchFn = (url) => axios.get(url).then((res) => res.data);
 
 export function ChatList({
   urlApi, 
   apiPath, 
   user_id, 
   setConversation, 
-  newChat,
-  setNewChat
+  setNewChat,
 }){
-  apiPath = apiPath + user_id;
   const [chats, setChats] = useState(null);
-  const { data, error, mutate } = useSWR(urlApi + apiPath, fetchChatList);
+  const { data, error, mutate } = useSWR(urlApi + apiPath + 'get_chats/' + user_id, fetchFn);
   const [selected, setSelected] = useState(null);
   
 
@@ -31,12 +29,11 @@ export function ChatList({
     }
   }, [data])
 
-
   
   const refreshChatList = () => {
     mutate();
   }
-  
+
   const createNewChat = () => {
     setNewChat(true);
     const listchats = chats;
@@ -62,10 +59,18 @@ export function ChatList({
   }
   
   const deleteChat = (chat_id) => {
-    console.log("Deleting chat: ", chat_id)
     setChats( prev => prev.filter(chat => chat._id !== chat_id) )
+    // Setear to other chat
+    setSelected(chats[0]._id)
+    setConversation({active: false})
+    
+    
     // Update delete to API
-    //axios.delete(urlApi + 'chat/delete_chat/' + chat_id)
+    axios.delete(urlApi + apiPath + 'delete_chat/' + chat_id)
+    .then((res) => {
+      console.log(res)
+      
+    })
   }
 
   return(
@@ -78,9 +83,9 @@ export function ChatList({
       <button 
         className="aside__newbutton"
         onClick={createNewChat}
-      >New Chat</button>
+      >New Chat🚀</button>
       <div className='aside__chatlist'>
-        {chats?.map((chat) => (
+        {chats && chats?.map((chat) => (
           <div 
             key={chat._id}
             className={`chat__item` + (selected === chat._id ? ' chatselected' : '')}
@@ -90,16 +95,16 @@ export function ChatList({
             <h3 className="chat__title">{chat.chat_title}</h3>
             
             <div className="chat__button__container">
-              <button
+              {/* <button
                 className="button button--edit"
                 onClick={() => console.log("Clicked edit button")}
               ><EditIcon style={{ fontSize: 20 }}/>
-              </button>
+              </button> */}
                 
               <button
                 className="button button--delete"
-                // onClick={() => deleteChat(chat._id)}
-                onClick={() => console.log("Clicked delete button")}
+                disabled={chat._id === "newchat"}
+                onClick={() => deleteChat(chat._id)}
               ><DeleteIcon style={{ fontSize: 20 }}/>
               </button>
             </div>
