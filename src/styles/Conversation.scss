@@ -151,24 +151,24 @@ ol{
 
 
 
-// pre > div {
-//   font-family: Roboto Slab;
-//   background: $bg-color !important;
-//   border: unset !important;
-//   box-shadow: none !important;
-//   width: fit-content !important;
-// }
+pre > div {
+  font-family: Roboto Slab;
+  background: $bg-color !important;
+  border: unset !important;
+  box-shadow: none !important;
+  width: auto !important;
+}
 
-// pre > code{
-//   background: $bg-color !important;
-//   width: fit-content !important;
-// }
+pre > code{
+  background: $bg-color !important;
+  width: fit-content !important;
+}
 
-// code{
-//   background: $bg-color !important;
-//   overflow-x: scroll;
-//   width: fit-content !important;
-// }
+code{
+  background: $bg-color !important;
+  overflow-x: scroll;
+  width: fit-content !important;
+}
 
 // pre {
 //   padding: 1rem;
