@@ -1,18 +1,7 @@
 @import "utils";
 
 
-@media screen and (max-width: 768px) {
-  .aside__newbutton{
-    position: fixed;
-    bottom: 5vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, .4);
-    z-index: 100;
-  }
-  
-}
+
 
 .aside{
   &__container{
@@ -71,6 +60,7 @@
     border-radius: 1rem;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, .2);
     transition: background-color .5s ease-in-out;
+    z-index: 1;
     &:hover{
       background-color: $second-color;
       box-shadow: 0px 5px 10px rgba(0, 0, 0, .4);
@@ -91,8 +81,6 @@
       grid-column: 2 / 3;
       grid-row: 2 / 3;
       justify-self: end;
-      
-      
   }
 }
 
@@ -122,8 +110,17 @@
 }
 
 
-@media screen and (min-width: 768px) {
-  // modify max-width on chatlist__container
+@media screen and (max-width: 768px) {
+  .aside__newbutton{
+    position: fixed;
+    bottom: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .4);
+    z-index: 100;
+  }
+  
 }
 
 /* width */
