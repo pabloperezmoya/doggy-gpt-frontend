@@ -1,33 +1,19 @@
 import { useState, useEffect, useRef } from 'react'
 import { useMediaQuery } from 'react-responsive';
 
+
 import { ChatList } from './components/ChatList';
 import { Conversation } from './components/Conversation';
 
 import './styles/App.scss';
 
-function App() {
-  const user_id = '1234';
-  
-  const urlApi = 'http://192.168.2.100:8000/';
+function App({user_id, urlApi}) {
+  // const user_id = '1234';
 
   const [conversation, setConversation] = useState({active: false});
   const [newChat, setNewChat] = useState(false);
 
-  if (!user_id){
-    return (
-      <div className='App'>
-        <h1>Only a few people can acces here</h1>
-        <h1>I think you arent part of this people
-          <p>&nbsp;</p>
-          <p>Sooo, goodbye🦖👋</p>
-        </h1>
-      </div>
-    )
-  }
-
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-  // const isDesktop = useMediaQuery('(min-width: 1025px)')
 
   return (
     <div className='App'>
